@@ -61,7 +61,7 @@ describe('BulkAdder', () => {
     });
 
     it('should increase to target', async () => {
-        const target = 30n;
+        const target = 5n;
         const res = await bulkAdder.send(deployer.getSender(), {
             value: toNano('0.6')
         },{

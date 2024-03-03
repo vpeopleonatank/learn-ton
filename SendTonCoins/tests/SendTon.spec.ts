@@ -1,21 +1,21 @@
 import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 import { toNano } from '@ton/core';
-import { Fund } from '../wrappers/Fund';
+import { SendTon } from '../wrappers/SendTon';
 import '@ton/test-utils';
 
-describe('Fund', () => {
+describe('SendTon', () => {
     let blockchain: Blockchain;
     let deployer: SandboxContract<TreasuryContract>;
-    let fund: SandboxContract<Fund>;
+    let sendTon: SandboxContract<SendTon>;
 
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        fund = blockchain.openContract(await Fund.fromInit());
+        sendTon = blockchain.openContract(await SendTon.fromInit());
 
         deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await fund.send(
+        const deployResult = await sendTon.send(
             deployer.getSender(),
             {
                 value: toNano('0.05'),
@@ -28,7 +28,7 @@ describe('Fund', () => {
 
         expect(deployResult.transactions).toHaveTransaction({
             from: deployer.address,
-            to: fund.address,
+            to: sendTon.address,
             deploy: true,
             success: true,
         });
@@ -36,6 +36,6 @@ describe('Fund', () => {
 
     it('should deploy', async () => {
         // the check is done inside beforeEach
-        // blockchain and fund are ready to use
+        // blockchain and sendTon are ready to use
     });
 });
