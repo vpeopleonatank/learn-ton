@@ -37,7 +37,7 @@ contract Fund with Deployable {
     }
 
     bounced(src: Deposit) {
-        self.balance = self.balance - src.amount;
+        self.balance = self.balance + src.amount;
     }
 
     get fun balance(): Int {
