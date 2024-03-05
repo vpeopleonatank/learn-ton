@@ -27,7 +27,7 @@ trait Trackable with Ownable {
     }
 
     // constants virtual and abstract
-    // the difference is only can initialize abstract one in the contract that we will inherit
+    // the difference is only can initialize abstract one in the trait that we will inherit
     // ref: https://docs.tact-lang.org/language/guides/constants#virtual-and-abstract-constants
 
     // virtual keyword before function let contract which inherit trait, override that function
