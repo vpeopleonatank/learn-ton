@@ -15,9 +15,9 @@ contract JettonWallet with Deployable {
 
     // step 2
     receive(msg: InternalAdd) {
-        if (msg.origin == self.parent) {
+        if (msg.origin == self.parent) {  // From JettonMaster to JettonWallet
             require(sender() == self.parent, "Parent only");
-        } else {
+        } else {  // From JettonWallet to JettonWallet: same logic code
             let init: StateInit = initOf JettonWallet(self.parent, msg.origin);
             require(sender() == contractAddress(init), "JettonWallet only");
         }
